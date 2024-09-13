@@ -1,0 +1,146 @@
+    {% load static %}
+    {% load crispy_forms_tags %}
+    <title>Flight Information Form</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        .logo img {
+            max-width: 1200px;
+            width: 100%; /* Make the logo take the same width as the form */
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .form-grid div {
+            padding: 10px;
+            border: 1px dotted red;
+            border-radius: 5px;
+        
+        }
+        .submit-btn {
+            display: flex;
+            justify-content: right;
+            margin-top: 20px;
+            
+        }
+        .submit-btn button:hover {
+            background-color: #007bff;
+            color: white;
+        }
+        .success-message {
+            text-align: center;
+            color: green;
+            margin-top: 20px;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container form-container">
+    <!-- Logo Section -->
+    <div class="logo">
+        <img src="{% static 'images/logo.jpg' %}" alt=" Logo"> 
+    </div>
+
+    <!-- Form Grid Layout -->
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="form-grid">
+            <!-- Passenger Information -->
+            <div>
+                <h3>Passenger Information</h3>
+                <div class="mb-3">
+                    <label for="id_full_name">{{ form.full_name.label }}</label><br>
+                    {{ form.full_name }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_gender">{{ form.gender.label }}</label><br>
+                    {{ form.gender }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_date_of_birth">{{ form.date_of_birth.label }}</label><br>
+                    {{ form.date_of_birth }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_nationality">{{ form.nationality.label }}</label><br>
+                    {{ form.nationality }}
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div>
+                <h3>Contact Information</h3>
+                <div class="mb-3">
+                    <label for="id_phone_number">{{ form.phone_number.label }}</label><br>
+                    {{ form.phone_number }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_email">{{ form.email.label }}</label><br>
+                    {{ form.email }}
+                </div>
+                <div class="mb-3">
+                    {% comment %} <label for="id_po_box">{{ form.po_box.label }}</label><br>/  {% endcomment %}
+                    {% comment %} {{ form.po_box}} {% endcomment %}
+                </div>
+                <div class="mb-3">
+                    <label for="id_emergency_phone_number">{{ form.emergency_phone_number.label }}</label><br>
+                    {{ form.emergency_phone_number }}
+                </div>
+            </div>
+
+            <!-- Flight Information -->
+            <div>
+                <h3>Flight Information</h3>
+                <div class="mb-3">
+                    <label for="id_passport_number">{{ form.passport_number.label }}</label><br>
+                    {{ form.passport_number }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_visa_document">{{ form.visa_document.label }}</label><br>
+                    {{ form.visa_document }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_departure_city">{{ form.departure_city.label }}</label><br>
+                    {{ form.departure_city }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_destination">{{ form.destination.label }}</label><br>
+                    {{ form.destination_city }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="submit-btn">
+            <button type="submit" class="btn btn-primary" style='background-color: orange'>Submit</button>
+        </div>
+
+        {% if success %}
+        <div class="success-message">
+            <p>Form submitted successfully!</p>
+        </div>
+        {% endif %}
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
