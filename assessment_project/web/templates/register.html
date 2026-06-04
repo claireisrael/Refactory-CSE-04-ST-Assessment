@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'styles/register.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="form-header">
+        <img src="{% static 'images/Header.PNG' %}">
+    </div>
+
+    <form method="POST" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="form-sections">
+
+            <!-- Passenger Information -->
+            <div class="form-section">
+                <h4>PASSENGER INFORMATION</h4>
+                <div class="form-group">
+                    {{ form.full_name.label_tag }} {{ form.full_name }}
+                    {% if form.full_name.errors %}<small class="error">{{ form.full_name.errors.0 }}</small>{% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.gender.label_tag }} {{ form.gender }}
+                    {% if form.gender.errors %}<small class="error">{{ form.gender.errors.0 }}</small>{% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.date_of_birth.label_tag }} {{ form.date_of_birth }}
+                    {% if form.date_of_birth.errors %}<small class="error">{{ form.date_of_birth.errors.0 }}</small>{% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.nationality.label_tag }} {{ form.nationality }}
+                    {% if form.nationality.errors %}<small class="error">{{ form.nationality.errors.0 }}</small>{% endif %}
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="form-section">
+                <h4>CONTACT INFORMATION</h4>
+                <div class="form-group">
+                    {{ form.phone_number.label_tag }} {{ form.phone_number }}
+                    {% if form.phone_number.errors %}<small class="error">{{ form.phone_number.errors.0 }}</small>{% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.email_address.label_tag }} {{ form.email_address }}
+                    {% if form.email_address.errors %}<small class="error">{{ form.email_address.errors.0 }}</small>{% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.po_box_number.label_tag }} {{ form.po_box_number }}
+                </div>
+                <div class="form-group">
+                    {{ form.emergency_phone_number.label_tag }} {{ form.emergency_phone_number }}
+                    {% if form.emergency_phone_number.errors %}<small class="error">{{ form.emergency_phone_number.errors.0 }}</small>{% endif %}
+                </div>
+            </div>
+
+            <!-- Flight Information -->
+            <div class="form-section">
+                <h4>FLIGHT INFORMATION</h4>
+                <div class="form-group">
+                    {{ form.passport_number.label_tag }} {{ form.passport_number }}
+                    {% if form.passport_number.errors %}<small class="error">{{ form.passport_number.errors.0 }}</small>{% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.visa_document.label_tag }} {{ form.visa_document }}
+                    {% if form.visa_document.errors %}<small class="error">{{ form.visa_document.errors.0 }}</small>{% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.departure_city.label_tag }} {{ form.departure_city }}
+                    {% if form.departure_city.errors %}<small class="error">{{ form.departure_city.errors.0 }}</small>{% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.destination_city.label_tag }} {{ form.destination_city }}
+                    {% if form.destination_city.errors %}<small class="error">{{ form.destination_city.errors.0 }}</small>{% endif %}
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">SUBMIT</button>
+
+        {% if messages %}
+        {% for msg in messages %}
+        <div class="alert alert-success">{{ msg }}</div>
+        {% endfor %}
+        {% endif %}
+    </form>
+</div>
+{% endblock %}
